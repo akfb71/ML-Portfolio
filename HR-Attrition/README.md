@@ -20,21 +20,21 @@ Scikit-learn
 Imbalanced-learn (SMOTENC)
 XGBoost
 Matplotlib / Seaborn
-Dataset
+## Dataset ##
 Dataset: IBM HR Analytics Employee Attrition Dataset.
 Contains employee demographic, job-related, and satisfaction metrics.
 Target variable:
 Attrition:
     Yes → 1
     No  → 0
-Features include:
+### Features include: ###
 Age, Gender, DistanceFromHome
 BusinessTravel, Department, JobRole
 EnvironmentSatisfaction, JobSatisfaction
 Overtime, MonthlyIncome, PercentSalaryHike
 YearsAtCompany, YearsInCurrentRole
 Education, JobLevel, StockOptionLevel
-Data Preprocessing
+## Data Preprocessing ##
 The project uses a modular preprocessing pipeline:
 Numerical Features
 Standard scaling
@@ -46,10 +46,10 @@ Train/Test Split
 80/20 split
 Stratified sampling
 Class Imbalance
-Two approaches explored:
+## Two approaches explored: ##
 SMOTENC (synthetic oversampling for mixed categorical + numeric data)
 XGBoost class weighting (scale_pos_weight)
-Models Trained
+## Models Trained ##
 The following models were trained and compared:
 Logistic Regression
 Random Forest
@@ -57,9 +57,9 @@ XGBoost (baseline)
 XGBoost + SMOTENC (final model)
 Random Forest performed poorly due to imbalance.
 XGBoost consistently performed best.
-Final Model: XGBoost + SMOTENC
+### Final Model: XGBoost + SMOTENC ###
 ### The final pipeline: ###
-[SMOTENC Oversampling] → [Preprocessing] → [XGBoost Classifier]
+### [SMOTENC Oversampling] → [Preprocessing] → [XGBoost Classifier] ###
 Example performance on holdout test set:
 Precision (Class 1): 0.54
 Recall (Class 1):    0.45
@@ -67,7 +67,7 @@ F1-score (Class 1):  0.49
 Accuracy:            0.85
 Because attrition is heavily imbalanced and noisy, recall for Class 1 (leavers) is the most important metric.
 This model achieves competitive results and performs significantly better than classical baselines.
-Evaluation Metrics
+## Evaluation Metrics ##
 Confusion Matrix
 Precision
 Recall
