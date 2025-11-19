@@ -1,74 +1,77 @@
-*** Employee Attrition Prediction (XGBoost + SMOTE + Full ML Pipeline)***
-A complete ML engineering project using real HR analytics data.
-** Project Overview **
-Employee attrition is a critical challenge for organizations, directly affecting productivity, hiring costs, and team performance.
-This project builds a machine learning model to predict whether an employee is likely to leave the company.
-You implemented a full ML pipeline, including:
-Data preprocessing (scaling, encoding, cleaning)
-Class imbalance handling (SMOTE / class weights)
-Model comparison (LogReg, Random Forest, XGBoost)
-Hyperparameter tuning
-Final model using XGBoost + SMOTE
-Evaluation using precision, recall, F1-score, and confusion matrix
-Production-ready pipeline using scikit-learn + XGBoost
-This is a complete, industry-standard ML workflow.
-** Tech Stack **
-Python 3.11+
-Pandas, NumPy
-Scikit-Learn
+# Employee Attrition Prediction (XGBoost + SMOTE) #
+A complete machine learning pipeline to predict employee attrition using the IBM HR Analytics dataset.
+This project includes data preprocessing, class imbalance handling, model training, evaluation, and a production-ready XGBoost pipeline.
+## Project Overview ##
+Employee attrition is costly for organizations. This project builds a classification model that predicts whether an employee is likely to leave the company.
+The project includes:
+Exploratory data analysis
+Data preprocessing (scaling, encoding, cleanup)
+Handling severe class imbalance
+Training multiple ML models
+Comparing performance
+Final model using XGBoost + SMOTENC
+Evaluation using recall, precision, F1-score, confusion matrix
+This is a full ML engineering workflow.
+## Tech stack ##
+Python 3.x
+Pandas
+NumPy
+Scikit-learn
+Imbalanced-learn (SMOTENC)
 XGBoost
-Imbalanced-Learn (SMOTE / SMOTENC)
 Matplotlib / Seaborn
-(Optional) LightGBM
-** Dataset **
-Dataset: IBM HR Analytics Employee Attrition Dataset
-Common features include:
-Age, Gender, DistanceFromHome
-JobRole, Department, BusinessTravel
-JobSatisfaction, EnvironmentSatisfaction
-YearsAtCompany, YearsSinceLastPromotion
-MonthlyIncome, Overtime, StockOptionLevel
+Dataset
+Dataset: IBM HR Analytics Employee Attrition Dataset.
+Contains employee demographic, job-related, and satisfaction metrics.
 Target variable:
-Attrition
-Yes → 1  
-No  → 0
-** Data Preprocessing **
-You implemented a fully automated preprocessing pipeline:
-✔ Numerical Features
+Attrition:
+    Yes → 1
+    No  → 0
+Features include:
+Age, Gender, DistanceFromHome
+BusinessTravel, Department, JobRole
+EnvironmentSatisfaction, JobSatisfaction
+Overtime, MonthlyIncome, PercentSalaryHike
+YearsAtCompany, YearsInCurrentRole
+Education, JobLevel, StockOptionLevel
+Data Preprocessing
+The project uses a modular preprocessing pipeline:
+Numerical Features
 Standard scaling
-Imputation (if needed)
-✔ Categorical Features
-One-Hot Encoding via ColumnTransformer
-✔ Train/Test Split
-80/20
-Stratified by target to maintain class ratios
-✔ Class Imbalance Handling
-Two approaches:
-SMOTENC for mixed categorical + numeric data
-scale_pos_weight for XGBoost (backup method)
-🤖 Models Trained
-You trained and compared:
-Model	Performance (Class 1 Recall)
-Logistic Regression	~20–30%
-Random Forest	~6% (very poor)
-XGBoost (baseline)	~45–50%
-XGBoost + SMOTENC (final)	~45–65%
-XGBoost consistently performed the best for tabular HR data.
-** Final Model: XGBoost + SMOTENC **
-Pipeline:
-[Preprocessing] →
-[SMOTENC Oversampling] →
-[XGBoost Classifier]
-Final performance (example):
-Precision (Class 1): 0.54  
-Recall (Class 1):    0.45  
-F1-score (Class 1):  0.49  
+Optional imputation
+Categorical Features
+One-Hot Encoding
+Handled through ColumnTransformer
+Train/Test Split
+80/20 split
+Stratified sampling
+Class Imbalance
+Two approaches explored:
+SMOTENC (synthetic oversampling for mixed categorical + numeric data)
+XGBoost class weighting (scale_pos_weight)
+Models Trained
+The following models were trained and compared:
+Logistic Regression
+Random Forest
+XGBoost (baseline)
+XGBoost + SMOTENC (final model)
+Random Forest performed poorly due to imbalance.
+XGBoost consistently performed best.
+Final Model: XGBoost + SMOTENC
+### The final pipeline: ###
+[SMOTENC Oversampling] → [Preprocessing] → [XGBoost Classifier]
+Example performance on holdout test set:
+Precision (Class 1): 0.54
+Recall (Class 1):    0.45
+F1-score (Class 1):  0.49
 Accuracy:            0.85
-This performance is considered strong for HR attrition prediction, where the minority class is small and noisy.
-** Evaluation Metrics **
+Because attrition is heavily imbalanced and noisy, recall for Class 1 (leavers) is the most important metric.
+This model achieves competitive results and performs significantly better than classical baselines.
+Evaluation Metrics
 Confusion Matrix
-Precision, Recall, F1-Score
-Accuracy
-Class Imbalance Analysis
-Threshold tuning (optional)
-The goal is not highest accuracy, but highest recall for class 1 (leavers).
+Precision
+Recall
+F1-score
+Overall Accuracy
+Class balance before/after SMOTE
+Threshold adjustments (optional)
